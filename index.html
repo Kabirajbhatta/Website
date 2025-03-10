@@ -4,7 +4,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kabiraj Bhatta - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav .logo span {
+            color: #e74c3c;
+        }
+
+        nav .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav .nav-links li {
+            display: inline-block;
+        }
+
+        nav .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav .btn {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px;
+            background-color: #fff;
+            animation: fadeIn 2s;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .hero .btn {
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero-image img {
+            max-width: 350px;
+            border-radius: 5px;
+        }
+
+        /* About Section */
+        .about {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            padding: 80px 10%;
+        }
+
+        .about-container {
+            display: flex;
+            max-width: 1100px;
+        }
+
+        .about-image img {
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        .about-content {
+            margin-left: 50px;
+        }
+
+        .about-content h2 {
+            font-size: 28px;
+            color: #162D3D;
+        }
+
+        .about-content p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .about-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-content ul li {
+            padding: 5px 0;
+            font-size: 16px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 10%;
+            background-color: #f4f4f9;
+        }
+
+        .contact h2 {
+            font-size: 28px;
+            color: #333;
+            text-align: center;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact form input, .contact form textarea {
+            width: 80%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact form button {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Schedule Meeting Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 500px;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+    </style>
 </head>
 <body>
 
@@ -12,28 +217,28 @@
     <nav>
         <div class="logo">Kabiraj <span>Bhatta</span></div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
-        <button class="schedule-btn" id="scheduleButton">Schedule Meeting</button>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <a href="#" class="btn" id="scheduleButton">Schedule Meeting</a>
     </nav>
 </header>
 
-<section class="hero" id="home">
+<section class="hero">
     <div class="hero-content">
-        <h1>Namaste, I'm <span>Kabiraj Bhatta</span></h1>
-        <p>International Student & Aspiring Pilot</p>
-        <a href="#portfolio" class="btn">View My Portfolio</a>
+        <p class="tagline">Namaste From</p>
+        <h1>Kabiraj Bhatta</h1>
+        <p class="subtitle">International Student & Aspiring Pilot</p>
+        <a href="#" class="btn">View My Portfolio</a>
     </div>
     <div class="hero-image">
         <img src="https://raw.githubusercontent.com/Kabirajbhatta/Images-/refs/heads/main/481670715_1215744813252014_5567770946477338071_n.jpg" alt="Kabiraj Bhatta">
     </div>
 </section>
 
-<section class="about" id="about">
+<section class="about">
     <div class="about-container">
         <div class="about-image">
             <img src="https://raw.githubusercontent.com/Kabirajbhatta/Images-/refs/heads/main/481260667_1214183366741492_8754677669931291927_n.jpg" alt="Kabiraj Bhatta">
@@ -41,21 +246,77 @@
         <div class="about-content">
             <h2>About Me</h2>
             <p>Your Trusted Business Analyst</p>
-            <p>I am passionate about technology, data, and problem-solving...</p>
+            <p><strong>As an international student and aspiring pilot</strong>, I am passionate about technology, data, and aviation. Currently pursuing my Bachelor's in Business Analytics at the University of Newcastle, I love solving problems through data-driven insights.</p>
+            <ul>
+                <li><strong>Analytical Mindset:</strong> I enjoy working with data and finding patterns that drive decisions.</li>
+                <li><strong>Problem-Solving Skills:</strong> My goal is to apply business analytics in real-world scenarios.</li>
+                <li><strong>Tech Enthusiast:</strong> Passionate about trading, cryptocurrencies, and web development.</li>
+                <li><strong>Aviation Lover:</strong> Dreaming of flying and exploring the world from above.</li>
+            </ul>
         </div>
     </div>
 </section>
 
-<section class="contact" id="contact">
+<section class="contact">
     <h2>Contact Me</h2>
     <form action="https://formspree.io/f/xanyjpel" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" required></textarea>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <input type="tel" name="phone" placeholder="Your Phone Number" required>
         <button type="submit">Send Message</button>
     </form>
 </section>
 
-<script src="script.js"></script>
-</body>
-</html>
+<!-- Schedule Meeting Modal -->
+<div class="modal" id="scheduleModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Schedule a Meeting</h2>
+        <div id="calendar"></div>
+        <form id="meetingForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Why do you want to meet?" required></textarea>
+            <button type="submit">Schedule Event</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+<script>
+    // Calendar Setup
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            dateClick: function(info) {
+                alert('Date selected: ' + info.dateStr);
+            }
+        });
+        calendar.render();
+    });
+
+    // Modal Control for Schedule Meeting
+    var scheduleButton = document.getElementById("scheduleButton");
+    var modal = document.getElementById("scheduleModal");
+    var closeModal = document.getElementById("closeModal");
+
+    scheduleButton.onclick = function() {
+        modal.style.display = "flex";
+    }
+
+    closeModal.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Handle the form submission for scheduling
+    document.getElementById("meetingForm").onsubmit = function(event) {
+        event.preventDefault();
