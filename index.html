@@ -1,322 +1,398 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kabiraj Bhatta - Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Global Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071521">
+  <meta name="description" content="Kabiraj Bhatta is a Sydney-based business analytics student, web designer and aspiring pilot turning data and ideas into clear digital experiences.">
+  <meta name="author" content="Kabiraj Bhatta">
+  <meta name="robots" content="index, follow">
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-        }
+  <title>Kabiraj Bhatta | Business Analytics &amp; Digital Portfolio</title>
+  <link rel="canonical" href="https://bhattakabiraj.com.np/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%23071521%22/><path d=%22M17 15h8v14l13-14h10L33 31l16 18H38L25 34v15h-8z%22 fill=%22%235de1c4%22/></svg>">
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bhattakabiraj.com.np/">
+  <meta property="og:title" content="Kabiraj Bhatta | Business Analytics &amp; Digital Portfolio">
+  <meta property="og:description" content="Data-minded, digitally curious and driven by a lifelong ambition to fly.">
+  <meta property="og:image" content="https://bhattakabiraj.com.np/assets/kabiraj-portrait.jpg">
+  <meta property="og:image:alt" content="Portrait of Kabiraj Bhatta">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kabiraj Bhatta | Business Analytics &amp; Digital Portfolio">
+  <meta name="twitter:description" content="Data-minded, digitally curious and driven by a lifelong ambition to fly.">
+  <meta name="twitter:image" content="https://bhattakabiraj.com.np/assets/kabiraj-portrait.jpg">
 
-        nav .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 
-        nav .logo span {
-            color: #e74c3c;
-        }
-
-        nav .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav .nav-links li {
-            display: inline-block;
-        }
-
-        nav .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        nav .btn {
-            background-color: red;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            justify-content: space-between;
-            padding: 50px;
-            background-color: #fff;
-            animation: fadeIn 2s;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero h1 {
-            font-size: 36px;
-            color: #333;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #555;
-        }
-
-        .hero .btn {
-            background-color: #e74c3c;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .hero-image img {
-            max-width: 350px;
-            border-radius: 5px;
-        }
-
-        /* About Section */
-        .about {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            padding: 80px 10%;
-        }
-
-        .about-container {
-            display: flex;
-            max-width: 1100px;
-        }
-
-        .about-image img {
-            width: 300px;
-            border-radius: 10px;
-        }
-
-        .about-content {
-            margin-left: 50px;
-        }
-
-        .about-content h2 {
-            font-size: 28px;
-            color: #162D3D;
-        }
-
-        .about-content p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .about-content ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .about-content ul li {
-            padding: 5px 0;
-            font-size: 16px;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 10%;
-            background-color: #f4f4f9;
-        }
-
-        .contact h2 {
-            font-size: 28px;
-            color: #333;
-            text-align: center;
-        }
-
-        .contact form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact form input, .contact form textarea {
-            width: 80%;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .contact form button {
-            background-color: red;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Schedule Meeting Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 500px;
-            text-align: center;
-        }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 30px;
-            color: #333;
-            cursor: pointer;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-    </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kabiraj Bhatta",
+      "url": "https://bhattakabiraj.com.np/",
+      "image": "https://bhattakabiraj.com.np/assets/kabiraj-portrait.jpg",
+      "jobTitle": "Business Analytics Student and Web Designer",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sydney",
+        "addressCountry": "AU"
+      },
+      "sameAs": ["https://github.com/Kabirajbhatta"]
+    }
+  </script>
 </head>
+
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<header>
-    <nav>
-        <div class="logo">Kabiraj <span>Bhatta</span></div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">Contact</a></li>
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Kabiraj Bhatta — home">
+        <span class="brand-mark" aria-hidden="true">KB</span>
+        <span class="brand-name">Kabiraj Bhatta</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open menu" data-nav-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation" data-nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#" class="btn" id="scheduleButton">Schedule Meeting</a>
-    </nav>
-</header>
-
-<section class="hero">
-    <div class="hero-content">
-        <p class="tagline">Namaste From</p>
-        <h1>Kabiraj Bhatta</h1>
-        <p class="subtitle">International Student & Aspiring Pilot</p>
-        <a href="#" class="btn">View My Portfolio</a>
+        <a class="button button-small nav-cta" href="#contact">Let’s talk</a>
+      </nav>
     </div>
-    <div class="hero-image">
-        <img src="https://raw.githubusercontent.com/Kabirajbhatta/Images-/refs/heads/main/IMG_1126.jpeg" alt="Kabiraj Bhatta">
-    </div>
-</section>
+  </header>
 
-<section class="about">
-    <div class="about-container">
-        <div class="about-image">
-            <img src="https://raw.githubusercontent.com/Kabirajbhatta/Images-/refs/heads/main/IMG_3189.jpeg">
+  <main id="main-content">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Business analytics · Web · Aviation</p>
+          <h1 id="hero-title">Curious by nature.<br><em>Driven by purpose.</em></h1>
+          <p class="hero-intro">I’m Kabiraj, a Sydney-based business analytics student and web designer turning data, ideas and ambition into clear digital experiences.</p>
+
+          <div class="hero-actions">
+            <a class="button" href="#portfolio">
+              Explore my work
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="text-link" href="#about">More about me <span aria-hidden="true">↓</span></a>
+          </div>
+
+          <dl class="hero-details" aria-label="Quick facts">
+            <div>
+              <dt>Based in</dt>
+              <dd>Sydney, Australia</dd>
+            </div>
+            <div>
+              <dt>Currently</dt>
+              <dd>Studying Business Analytics</dd>
+            </div>
+          </dl>
         </div>
-        <div class="about-content">
-            <h2>About Me</h2>
-            <p>Your Trusted Web Designer </p>
-            <p><strong>As an international student and aspiring pilot</strong>, I am passionate about technology, data, and aviation. Currently pursuing my Bachelor's in Business Analytics at the Kings Own Institute At Sydney Australia, I love solving problems through data-driven insights.</p>
-            <ul>
-                <li><strong>Analytical Mindset:</strong> I enjoy working with data and finding patterns that drive decisions.</li>
-                <li><strong>Problem-Solving Skills:</strong> My goal is to apply business analytics in real-world scenarios.</li>
-                <li><strong>Tech Enthusiast:</strong> Passionate about trading, cryptocurrencies, and web development.</li>
-                <li><strong>Aviation Lover:</strong> Dreaming of flying and exploring the world from above.</li>
+
+        <div class="hero-visual reveal" data-delay="120">
+          <div class="portrait-frame">
+            <span class="portrait-kicker">Namaste</span>
+            <img
+              src="assets/kabiraj-portrait.jpg"
+              alt="Kabiraj Bhatta outdoors"
+              width="1050"
+              height="1400"
+              fetchpriority="high"
+            >
+            <div class="portrait-badge">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8-8-2Z"/></svg>
+              <span>Future<br><strong>Pilot</strong></span>
+            </div>
+          </div>
+          <p class="photo-caption"><span>01</span> Building a path where insight meets altitude.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-label="Areas of interest">
+      <p class="sr-only">Business analytics, responsive design, data-led thinking and aviation.</p>
+      <div class="marquee-track" aria-hidden="true">
+        <span>Business Analytics</span><i aria-hidden="true"></i>
+        <span>Responsive Design</span><i aria-hidden="true"></i>
+        <span>Data-led Thinking</span><i aria-hidden="true"></i>
+        <span>Aviation</span><i aria-hidden="true"></i>
+        <span>Business Analytics</span><i aria-hidden="true"></i>
+        <span>Responsive Design</span><i aria-hidden="true"></i>
+        <span>Data-led Thinking</span><i aria-hidden="true"></i>
+        <span>Aviation</span><i aria-hidden="true"></i>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <div class="about-image-wrap">
+            <img
+              src="assets/kabiraj-sydney.jpg"
+              alt="Kabiraj Bhatta in Sydney"
+              width="1050"
+              height="1400"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <div class="about-note" aria-hidden="true">
+            <span>Based in</span>
+            <strong>SYD</strong>
+            <svg viewBox="0 0 24 24"><path d="M12 21s7-5.4 7-12a7 7 0 1 0-14 0c0 6.6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </div>
+        </div>
+
+        <div class="about-copy reveal" data-delay="100">
+          <header class="section-heading">
+            <p class="section-label"><span>01</span> About me</p>
+            <h2 id="about-title">Ambition grounded in <em>analysis.</em></h2>
+          </header>
+
+          <p class="lead">I bring an analytical mindset to creative work—and a creative mindset to analytical problems.</p>
+          <p>As an international student pursuing a Bachelor’s degree in Business Analytics at King’s Own Institute in Sydney, I’m learning how good data can turn uncertainty into confident decisions.</p>
+          <p>Outside the classroom, I explore web development, trading, cryptocurrency and the world of aviation. My long-term ambition is to become a pilot: a goal that keeps me disciplined, curious and always looking beyond the horizon.</p>
+
+          <div class="principles" aria-label="My strengths">
+            <div>
+              <span class="principle-number">01</span>
+              <p><strong>Think clearly</strong>Find the signal, ask better questions and make complexity useful.</p>
+            </div>
+            <div>
+              <span class="principle-number">02</span>
+              <p><strong>Build thoughtfully</strong>Create digital work that feels simple, accessible and purposeful.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <header class="section-heading skills-heading reveal">
+          <div>
+            <p class="section-label light"><span>02</span> Capabilities</p>
+            <h2 id="skills-title">A versatile toolkit for <em>modern work.</em></h2>
+          </div>
+          <p>I combine technical curiosity, commercial thinking and a people-first approach to solve problems from more than one angle.</p>
+        </header>
+
+        <div class="skill-grid">
+          <article class="skill-card reveal">
+            <div class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 19V9m8 10V5m8 14V2M2 19h20"/></svg>
+            </div>
+            <p class="card-index">01</p>
+            <h3>Data &amp; insight</h3>
+            <p>Finding patterns, framing questions and translating information into clear business direction.</p>
+            <ul class="tag-list" aria-label="Data and insight skills">
+              <li>Business analytics</li>
+              <li>Data visualisation</li>
+              <li>Market research</li>
+              <li>Problem solving</li>
             </ul>
+          </article>
+
+          <article class="skill-card reveal" data-delay="80">
+            <div class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m8 10-3 2 3 2m8-4 3 2-3 2m-3-6-2 8"/></svg>
+            </div>
+            <p class="card-index">02</p>
+            <h3>Web &amp; digital</h3>
+            <p>Creating responsive, accessible experiences with clean structure and focused visual design.</p>
+            <ul class="tag-list" aria-label="Web and digital skills">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>Responsive design</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal" data-delay="160">
+            <div class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg>
+            </div>
+            <p class="card-index">03</p>
+            <h3>Professional strengths</h3>
+            <p>Bringing reliability, adaptability and a global perspective to every opportunity.</p>
+            <ul class="tag-list" aria-label="Professional strengths">
+              <li>Communication</li>
+              <li>Critical thinking</li>
+              <li>Adaptability</li>
+              <li>Continuous learning</li>
+            </ul>
+          </article>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section class="contact">
-    <h2>Contact Me</h2>
-    <form action="https://formspree.io/f/xanyjpel" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="text" name="subject" placeholder="Subject" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <input type="tel" name="phone" placeholder="Your Phone Number" required>
-        <button type="submit">Send Message</button>
-    </form>
-</section>
+    <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <header class="section-heading portfolio-heading reveal">
+          <div>
+            <p class="section-label"><span>03</span> Portfolio</p>
+            <h2 id="portfolio-title">Areas I’m actively <em>building in.</em></h2>
+          </div>
+          <p>A growing body of work shaped by study, experimentation and real curiosity.</p>
+        </header>
 
-<!-- Schedule Meeting Modal -->
-<div class="modal" id="scheduleModal">
-    <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <h2>Schedule a Meeting</h2>
-        <div id="calendar"></div>
-        <form id="meetingForm">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Why do you want to meet?" required></textarea>
-            <button type="submit">Schedule Event</button>
+        <div class="work-list">
+          <article class="work-item reveal">
+            <div class="work-number">01</div>
+            <div class="work-content">
+              <p class="work-type">Business analytics</p>
+              <h3>Decision-ready analysis</h3>
+              <p>Exploring how structured data, visualisation and commercial context can make decisions clearer and more defensible.</p>
+            </div>
+            <div class="work-tags" aria-label="Related topics">
+              <span>Insights</span><span>Visualisation</span><span>Strategy</span>
+            </div>
+          </article>
+
+          <article class="work-item reveal">
+            <div class="work-number">02</div>
+            <div class="work-content">
+              <p class="work-type">Digital experience</p>
+              <h3>Responsive web design</h3>
+              <p>Designing and building fast, inclusive websites that adapt naturally from the smallest phone to the largest desktop.</p>
+            </div>
+            <div class="work-tags" aria-label="Related topics">
+              <span>UX</span><span>Front end</span><span>Accessibility</span>
+            </div>
+          </article>
+
+          <article class="work-item reveal">
+            <div class="work-number">03</div>
+            <div class="work-content">
+              <p class="work-type">Independent research</p>
+              <h3>Markets &amp; emerging technology</h3>
+              <p>Following the forces shaping trading, cryptocurrency and digital business with a measured, evidence-led perspective.</p>
+            </div>
+            <div class="work-tags" aria-label="Related topics">
+              <span>Research</span><span>Markets</span><span>Technology</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="portfolio-cta reveal">
+          <p>Want to see how I think or build something together?</p>
+          <a class="text-link dark" href="#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <p class="section-label light"><span>04</span> Contact</p>
+          <h2 id="contact-title">Let’s turn a good idea into <em>something real.</em></h2>
+          <p>Whether you have an opportunity, a project or simply a thoughtful question, I’d be glad to hear from you.</p>
+
+          <div class="contact-meta">
+            <div>
+              <span>Location</span>
+              <strong>Sydney, Australia</strong>
+            </div>
+            <div>
+              <span>Response</span>
+              <strong>Usually within 1–2 days</strong>
+            </div>
+          </div>
+
+          <div class="contact-socials">
+            <p class="social-heading">Find me online</p>
+            <div class="social-link-list">
+              <a class="social-link" href="https://www.facebook.com/KabirajBhattta" target="_blank" rel="noopener noreferrer" aria-label="Visit Kabiraj Bhatta on Facebook (opens in a new tab)">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M13.5 21v-8h2.8l.42-3.1H13.5V7.92c0-.9.25-1.51 1.58-1.51h1.69V3.64a22.6 22.6 0 0 0-2.46-.13c-2.43 0-4.1 1.49-4.1 4.22V9.9H7.46V13h2.75v8h3.29Z"/></svg>
+                <span>Facebook</span>
+              </a>
+              <a class="social-link" href="https://www.instagram.com/kabiraj_29/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Visit Kabiraj Bhatta on Instagram (opens in a new tab)">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="social-dot" cx="17.5" cy="6.5" r="1"/></svg>
+                <span>Instagram</span>
+              </a>
+              <a class="social-link" href="https://www.tiktok.com/@kabiraj__bhatta" target="_blank" rel="noopener noreferrer" aria-label="Visit Kabiraj Bhatta on TikTok (opens in a new tab)">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15.1 3c.17 1.52 1.02 2.74 2.5 3.5A5.7 5.7 0 0 0 21 7.6v3.07a8.85 8.85 0 0 1-5.9-2v6.22a6 6 0 1 1-5.17-5.94v3.13A2.9 2.9 0 1 0 12 14.86V3h3.1Z"/></svg>
+                <span>TikTok</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" action="https://formspree.io/f/xanyjpel" method="POST" data-delay="100">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span>(optional)</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button class="button form-submit" type="submit">
+            Send message
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="form-note">Your details are used only to reply to your message.</p>
         </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="#home" aria-label="Back to the top">
+        <span class="brand-mark" aria-hidden="true">KB</span>
+        <span class="brand-name">Kabiraj Bhatta</span>
+      </a>
+      <p>© <span data-year>2026</span> Kabiraj Bhatta. Built with purpose.</p>
+      <div class="footer-network">
+        <a class="footer-link" href="https://github.com/Kabirajbhatta" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <nav class="footer-socials" aria-label="Social media links">
+          <a class="footer-icon-link" href="https://www.facebook.com/KabirajBhattta" target="_blank" rel="noopener noreferrer" aria-label="Visit Kabiraj Bhatta on Facebook (opens in a new tab)">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M13.5 21v-8h2.8l.42-3.1H13.5V7.92c0-.9.25-1.51 1.58-1.51h1.69V3.64a22.6 22.6 0 0 0-2.46-.13c-2.43 0-4.1 1.49-4.1 4.22V9.9H7.46V13h2.75v8h3.29Z"/></svg>
+          </a>
+          <a class="footer-icon-link" href="https://www.instagram.com/kabiraj_29/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Visit Kabiraj Bhatta on Instagram (opens in a new tab)">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="social-dot" cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a class="footer-icon-link" href="https://www.tiktok.com/@kabiraj__bhatta" target="_blank" rel="noopener noreferrer" aria-label="Visit Kabiraj Bhatta on TikTok (opens in a new tab)">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M15.1 3c.17 1.52 1.02 2.74 2.5 3.5A5.7 5.7 0 0 0 21 7.6v3.07a8.85 8.85 0 0 1-5.9-2v6.22a6 6 0 1 1-5.17-5.94v3.13A2.9 2.9 0 1 0 12 14.86V3h3.1Z"/></svg>
+          </a>
+        </nav>
+      </div>
     </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
-<script>
-    // Calendar Setup
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            dateClick: function(info) {
-                alert('Date selected: ' + info.dateStr);
-            }
-        });
-        calendar.render();
-    });
-
-    // Modal Control for Schedule Meeting
-    var scheduleButton = document.getElementById("scheduleButton");
-    var modal = document.getElementById("scheduleModal");
-    var closeModal = document.getElementById("closeModal");
-
-    scheduleButton.onclick = function() {
-        modal.style.display = "flex";
-    }
-
-    closeModal.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    // Handle the form submission for scheduling
-    document.getElementById("meetingForm").onsubmit = function(event) {
-        event.preventDefault();
+  </footer>
+</body>
+</html>
