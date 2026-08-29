@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kabiraj-meeting-notifications",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-29",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "bhattakabiraj.com.np/api/meetings",
+      "zone_name": "bhattakabiraj.com.np"
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGIN": "https://bhattakabiraj.com.np",
+    "TIME_ZONE": "Australia/Sydney",
+    "WHATSAPP_API_VERSION": "v23.0",
+    "WHATSAPP_RECIPIENT_NUMBER": "61425192976",
+    "WHATSAPP_TEMPLATE_LANGUAGE": "en_US",
+    "WHATSAPP_TEMPLATE_NAME": "new_meeting_request"
+  },
+  "secrets": {
+    "required": [
+      "WHATSAPP_ACCESS_TOKEN",
+      "WHATSAPP_PHONE_NUMBER_ID"
+    ]
+  },
+  "ratelimits": [
+    {
+      "name": "MEETING_RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 3,
+        "period": 60
+      }
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}
+
